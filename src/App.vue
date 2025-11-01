@@ -5,6 +5,7 @@ export default {
       name: "VueApp",
       status: "active",
       tasks: ["Task 1", "Task 2", "Task 3"],
+      link: "https://google.com",
     };
   },
 };
@@ -20,4 +21,6 @@ export default {
   <ul>
     <li v-for="task in tasks" :key="task">{{ task }}</li>
   </ul>
+  <!-- <a v-bind:href="link">Click for google</a> -->
+  <a :href="link">Click for google</a>
 </template>
