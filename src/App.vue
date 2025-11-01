@@ -1,23 +1,30 @@
 <script>
+import { ref } from "vue";
+
 export default {
-  data() {
-    return {
-      name: "VueApp",
-      status: "active",
-      tasks: ["Task 1", "Task 2", "Task 3"],
-      link: "https://google.com",
-    };
-  },
-  methods: {
-    toggleStatus() {
-      if (this.status === "active") {
-        this.status = "pending";
-      } else if (this.status === "pending") {
-        this.status = "inactive";
+  setup() {
+    const name = ref("Vue 3");
+    const status = ref("active");
+    const tasks = ref(["Task 1", "Task 2", "Task 3"]);
+    const link = "https://www.google.com";
+
+    function toggleStatus() {
+      if (status.value === "active") {
+        status.value = "pending";
+      } else if (status.value === "pending") {
+        status.value = "inactive";
       } else {
-        this.status = "active";
+        status.value = "active";
       }
-    },
+    }
+
+    return {
+      name,
+      status,
+      tasks,
+      link,
+      toggleStatus,
+    };
   },
 };
 </script>
