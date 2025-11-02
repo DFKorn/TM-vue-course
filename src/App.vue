@@ -5,6 +5,7 @@ const name = ref("Vue 3");
 const status = ref("active");
 const tasks = ref(["Task 1", "Task 2", "Task 3"]);
 const link = "https://www.google.com";
+const newTask = ref("");
 
 function toggleStatus() {
   if (status.value === "active") {
@@ -15,6 +16,13 @@ function toggleStatus() {
     status.value = "active";
   }
 }
+
+const addTask = () => {
+  if (newTask.value.trim() !== "") {
+    tasks.value.push(newTask.value.trim());
+    newTask.value = "";
+  }
+};
 </script>
 
 <template>
@@ -22,6 +30,12 @@ function toggleStatus() {
   <p v-if="status === 'active'">User is active</p>
   <p v-else-if="status === 'pending'">User is pending</p>
   <p v-else>User is inactive</p>
+
+  <form @submit.prevent="addTask">
+    <label for="newTask">Add Task</label>
+    <input type="text" id="newTask" name="newTask" v-model="newTask" />
+    <button type="submit">Submit</button>
+  </form>
 
   <h3>Tasks:</h3>
   <ul>
